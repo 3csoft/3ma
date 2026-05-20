@@ -8,6 +8,7 @@
     <AlgoType>Indicator</AlgoType>
     <AssemblyName>_3MA</AssemblyName>
     <RootNamespace>_3MA</RootNamespace>
+    <DistDir>$(MSBuildProjectDirectory)\..\dist\</DistDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <OutputPath>C:\Quantower\TradingPlatform\v1.145.17\..\..\Settings\Scripts\Indicators\3MA</OutputPath>
@@ -21,4 +22,8 @@
       <Private>False</Private>
     </Reference>
   </ItemGroup>
+  <Target Name="CopyDllToDist" AfterTargets="Build">
+    <MakeDir Directories="$(DistDir)" />
+    <Copy SourceFiles="$(TargetPath)" DestinationFiles="$(DistDir)$(AssemblyName).dll" OverwriteReadOnlyFiles="true" SkipUnchangedFiles="false" />
+  </Target>
 </Project>
